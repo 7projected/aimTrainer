@@ -1,9 +1,9 @@
-import pygame, sys, random, click
+import pygame, sys, random, click, config
 
 # Pygame setup
 pygame.init()
 
-bg_color = [10, 10, 50]
+bg_color = [0, 0, 0]
 
 screen = pygame.display.set_mode([1280, 720])
 clock = pygame.time.Clock()
@@ -11,12 +11,8 @@ dt :float= 0
 font = pygame.font.Font(None, 16)
 mouse_pos = [0, 0]
 
-def leftClick(mousePos):
-    for c in click.Click.click_list:
-        c.click(mousePos, 1)
-
 for i in range(4):
-    click.Click.spawnClick(32, [255-bg_color[0], 255-bg_color[1], 255-bg_color[2]], font)
+    click.Click.spawnClick(config.click_size, [255-bg_color[0], 255-bg_color[1], 255-bg_color[2]], font, random.randint(0, config.max_clicks))
 
 while True:
     mouse_pos = pygame.mouse.get_pos()
@@ -25,9 +21,27 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+            
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                leftClick(mouse_pos)
+                hit_a_box = False
+                
+                for c in click.Click.click_list:
+                    if c.click(mouse_pos, config.mouse_rect_size):
+                        hit_a_box = True
+                        if config.allow_hit_multiple == False:
+                            break
+                
+                s = None
+                
+                if hit_a_box:
+                    s = pygame.mixer.Sound('assets/hit_click.wav')
+                else:
+                    s = pygame.mixer.Sound('assets/miss_click.wav')
+                    
+                s.play()
+                
+                # Add scoring, accuracy, anything that checks if the user hit a box
     
     # Update
     
