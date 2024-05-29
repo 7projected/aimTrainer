@@ -10,6 +10,11 @@ dt :float= 0
 font = pygame.font.Font(None, 32)
 mouse_pos = [0, 0]
 
+icon = pygame.Surface([32, 32]).convert_alpha()
+icon.fill([0,0,0,0])
+
+pygame.display.set_caption("Aim Trainer")
+pygame.display.set_icon(icon)
 
 SCENE_START    = 0
 SCENE_PLAY     = 1
