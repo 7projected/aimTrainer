@@ -132,7 +132,10 @@ while True:
 
     if config.scene == SCENE_PLAY:
         score_text = font.render(f'Score: {score}', True, oppositeColor)
+        return_text = font.render(f'Press ESCAPE to return to main menu.', True, oppositeColor)
+
         screen.blit(score_text, [0, 0])
+        screen.blit(return_text, [0, 720-32])
     
     if config.scene == SCENE_SETTINGS:
         max_click_text = font.render(f'Max Clicks: {config.max_clicks}', True, oppositeColor)

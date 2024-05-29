@@ -1,5 +1,5 @@
 max_clicks :int= 2                  # C
-click_size :int= 128                 # C
+click_size :int= 64                 # C
 click_amount :int= 4                # C
 allow_hit_multiple :bool= False
 mouse_rect_size :int= 5
