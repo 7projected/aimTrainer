@@ -1,4 +1,9 @@
-max_clicks :int= 2
-click_size :int= 500
+max_clicks :int= 2                  # C
+click_size :int= 128                 # C
+click_amount :int= 4                # C
 allow_hit_multiple :bool= False
 mouse_rect_size :int= 5
+bg_color :list= [0, 0, 0]
+scene :int= 0
+score_add :int= 100
+score_remove :int= 75
